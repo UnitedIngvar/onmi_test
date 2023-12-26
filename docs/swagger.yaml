@@ -1,0 +1,41 @@
+definitions:
+  sendRequest.Request:
+    description: Request
+    properties:
+      ItemCount:
+        maximum: 100000
+        type: integer
+    required:
+    - ItemCount
+    type: object
+  sendRequest.Response:
+    properties:
+      error:
+        type: string
+      status:
+        type: string
+    type: object
+info:
+  contact: {}
+  title: onmi_test service
+paths:
+  /send-request:
+    post:
+      consumes:
+      - application/json
+      description: Takes
+      parameters:
+      - description: request
+        in: body
+        name: request
+        schema:
+          $ref: '#/definitions/sendRequest.Request'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: response
+          schema:
+            $ref: '#/definitions/sendRequest.Response'
+      summary: Send request to the external server
+swagger: "2.0"

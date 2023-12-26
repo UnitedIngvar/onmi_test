@@ -1,0 +1,65 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "onmi_test service",
+        "contact": {}
+    },
+    "paths": {
+        "/send-request": {
+            "post": {
+                "description": "Takes",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Send request to the external server",
+                "parameters": [
+                    {
+                        "description": "request",
+                        "name": "request",
+                        "in": "body",
+                        "schema": {
+                            "$ref": "#/definitions/sendRequest.Request"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "response",
+                        "schema": {
+                            "$ref": "#/definitions/sendRequest.Response"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "sendRequest.Request": {
+            "description": "Request",
+            "type": "object",
+            "required": [
+                "ItemCount"
+            ],
+            "properties": {
+                "ItemCount": {
+                    "type": "integer",
+                    "maximum": 100000
+                }
+            }
+        },
+        "sendRequest.Response": {
+            "type": "object",
+            "properties": {
+                "error": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}
